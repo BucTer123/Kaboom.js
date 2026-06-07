@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+</head>
+<body>
+</body>
+<script type="module">
+    import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs";
+
+    kaboom();
+
+    kaboom ({
+        background: [140, 70, 130]
+    })
+
+    add([
+        text("Welcome to settings!"),
+        pos(120, 80),
+    ])
+
+    onUpdate(() => setCursor("default"))
+
+    function addButton(txt, p, f) {
+
+        const btn = add([
+            rect(240, 80, {radius: 8}),
+            pos(p),
+            area(),
+            scale(1),
+            anchor("center"),
+            outline(4),
+        ])
+
+        btn.add([
+            text(txt),
+            anchor("center"),
+            color(0, 0, 0),
+        ])
+
+        btn.onHoverUpdate(() => {
+            const t = time() * 10
+            btn.color = hsl2rgb((t / 10) % 1, 0.6, 0.7)
+            btn.scale = vec2(1.2)
+            setCursor("pointer")
+        })
+
+        btn.onHoverEnd(() => {
+            btn.scale = vec2(1)
+            btn.color = rgb()
+        })
+
+        btn.onClick(f)
+
+        return btn
+    }
+
+    addButton("Quit", vec2(200, 100), () => window.location.href = "game.html")
+</script>
+</html>

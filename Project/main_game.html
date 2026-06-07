@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Game</title>
+</head>
+<body>
+
+</body>
+<script type="module">
+    import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs";
+
+    kaboom()
+
+    loadSprite("bean", "spritez/bean.png")
+    loadSprite("gosti", "spritez/gosti.png")
+
+    const player = add([
+        sprite("bean"),
+        pos(120, 80),
+        rotate(0),
+        anchor("center")
+    ])
+
+    player.onUpdate(() => {
+        player.angle += 120 * dt()
+    })
+
+    for (let i =0; i < 3; i++) {
+        const x = rand(0, width())
+        const y = rand(0, height())
+
+        add([
+            sprite("gosti"),
+            pos(x, y)
+        ])
+    }
+</script>
+</html>
