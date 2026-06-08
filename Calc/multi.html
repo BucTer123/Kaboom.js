@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input id="first_number" type="text" placeholder="First Number">
+<input id="second_number" type="text" placeholder="Second Number">
+<button id="btn_ans" type="button">Answer</button>
+</body>
+<script>
+    let a = document.getElementById("first_number")
+    let b = document.getElementById("second_number")
+    const btn = document.getElementById("btn_ans")
+
+    btn.addEventListener("click", () => {
+        let A = a.value
+        let B = b.value
+
+        window.alert(A * B)
+    })
+</script>
+</html>
