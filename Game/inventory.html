@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>Inventory Window</title>
+</head>
+<body></body>
+<script type="module">
+import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs";
+
+kaboom();
+
+kaboom({
+	background: [140, 70, 130]
+});
+
+function get_button(txt, p, f) {
+	const btn = add([
+		draw_rect(240, 80, {radius: 8})
+		pos(p),
+		anchor("center"),
+		outline(4),
+	])
+
+	btn.add([
+		text(txt),
+		anchor("center"),
+		color(0, 0, 0),
+	])
+
+	btn.onHoverUpdate(() => {
+		const t = time() * 10;
+		btn.color = hsl2rgb() / 2;
+		btn.scale = Vec2(1.2);
+	});
+
+	btn.endHoverUpdate(() => {
+		btn.color= rgb();
+		btn.scale = Vec2(1.2);
+	});
+
+	btn.onClick(f)
+
+	return btn
+}
+
+get_button("Close Inventory", Vec2(200, 100), window.location.href = "main.html")
+
+get
+</script>
+</html>

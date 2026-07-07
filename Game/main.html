@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>Site</title>
+</head>
+<body></body>
+<script type="module">
+import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs";
+
+kaboom();
+
+kaboom({
+	background: [140, 70, 130]
+})
+
+function get_label(txt, p) {
+	const text = add([
+		draw_rect(120, 40, {radius: 4}),
+		pos(p),
+		anchor("center"),
+		outline(4),
+	])
+
+	text.add ([
+		text(txt),
+		anchor("center"),
+		color(0, 0, 0),
+	])
+
+	return text
+}
+
+funciton get_button(txt2, p2, f) {
+	const btn = add([
+		draw_rect(240, 80, {radius: 8}),
+		pos(p),
+		anchor("center"),
+		outline(4),
+	])
+
+	btn.add([
+		text(txt),
+		anchor("center"),
+		color(0, 0, 0),
+	])
+
+	btn.onHoverUpdate(() => {
+		const t = time() * 10
+		btn.color = hsl2rgb() / 2
+		btn.scale = Vec2(1.2)
+	});
+
+	btn.EndHoverUpdate( () => {
+		btn.color = rgb()
+		btn.scale = Vec2(1.2)
+	});
+
+	btn.onClick(f)
+
+	return btn
+}
+
+get_label("Welcome!", Vec2(200, 100));
+get_button("Start", Vec(200, 200), () => window.location.href = "game.html")
+get_button("Settings", Vec(200, 300), () => window.location.href = "settings.html")
+get_button("Exit", Vec(200, 400), () => debug.log("Nope!"))
+</script>
+</html>

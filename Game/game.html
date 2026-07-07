@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8' >
+	<title>Game Window</title>
+</head>
+<body></body>
+<script type="module">
+import kaboom from "https://unpkg.com/kaboom@3000.0.1/dist/kaboom.mjs";
+
+kaboom();
+
+kaboom({
+	background: [140, 70, 130]
+});
+
+const x = rand(0, width)
+const y = rand(0, height)
+
+const player = add([
+	draw_rect(240, 80, {radius: 8})
+	pos(120, 80),
+	rotate(0),
+	anchor("center"),
+])
+
+player.onHoverUpdate(() => {
+	player.x += 120 * dt()
+	player.y += 80 * dt()
+});
+
+function inventory_open() {
+	window.location.href = "inventory.html";
+}
+
+document.addEventListener("keydown", function(event) {
+	if (event.key == "w") { player.x += 30; }
+	else if (event.key == "s") { player.x -= 30; }
+	else if (event.key == "a") { player.y += 30; }
+	else if (event.key == "d") { player.y -= 30; }
+	else if (event.key == "e") { inventory_open(); }
+});
+
+</script>
+</html>
