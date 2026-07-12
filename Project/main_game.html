@@ -22,18 +22,27 @@
         anchor("center")
     ])
 
-    player.onUpdate(() => {
-        player.angle += 120 * dt()
-    })
+    const x = rand(0, width())
+    const y = rand(0, height())
 
-    for (let i =0; i < 3; i++) {
-        const x = rand(0, width())
-        const y = rand(0, height())
+    add([
+        sprite("gosti"),
+        pos(x, y)
+    ])
 
-        add([
-            sprite("gosti"),
-            pos(x, y)
-        ])
-    }
+    document.addEventListener("keydown", function(event) {
+        if (event.type == "w") {
+            player.x += 120 * dt()
+        }
+        else if (event.type == "s") {
+            player.x -= 120 * dt()
+        }
+        else if (event.type == "a") {
+            player.y += 80 * dt()
+        }
+        else if (event.type == "d") {
+            player.y -= 80 * dt()
+        }
+    });
 </script>
 </html>
